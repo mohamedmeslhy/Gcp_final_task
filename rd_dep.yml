@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    name: redis
+    app: db-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-redis
+      name: redis 
+  template:
+    metadata:
+      name: redis
+      labels:
+        name: redis
+        app: db-redis
+    spec:
+      containers:
+        - name: redis
+          image: gcr.io/active-sun-337308/redis:latest
+          ports:
+            - containerPort: 6379
